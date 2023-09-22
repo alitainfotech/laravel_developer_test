@@ -138,7 +138,7 @@ class UserController extends Controller
                 'body' => 'This Mail to inform that Account is Deactivated'
             ];
 
-            Mail::to(Auth::user()->email)->send(new UserStatus($mailData));
+            Mail::to($user->email)->send(new UserStatus($mailData));
         } elseif ($user->status === '1') {
             $user->update(['status' => '0']);
 
@@ -147,7 +147,7 @@ class UserController extends Controller
                 'body' => 'This Mail to inform that Account is Activated',
             ];
 
-            Mail::to(Auth::user()->email)->send(new UserStatus($mailData));
+            Mail::to($user->email)->send(new UserStatus($mailData));
         }
 
         return redirect()->route('dashboard');
