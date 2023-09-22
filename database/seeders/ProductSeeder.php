@@ -16,13 +16,19 @@ class ProductSeeder extends Seeder
         // Creating B2B product
         Product::factory()->create([
             'title' => 'Apple MacBook Pro',
-            'type' => '0'
+            'type' => '0',
+            'price' => '1299',
+            'image' => 'storage/images/products/macbook-pro-2.jpg',
+            'stripe_id' => 'price_1Nt54YLcxz9ozpMPdrPFN0gR',
         ]);
 
         // Creating B2C product
         Product::factory()->create([
             'title' => 'Apple MacBook Pro',
-            'type' => '1'
+            'type' => '1',
+            'price' => '1499',
+            'image' => 'storage/images/products/macbook-pro.jpg',
+            'stripe_id' => 'price_1Nt544Lcxz9ozpMPPM4AaoB7',
         ]);
      }
 }

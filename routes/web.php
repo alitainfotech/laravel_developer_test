@@ -21,9 +21,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserController::class, 'dashbord'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,7 +36,9 @@ Route::resource('products', ProductController::class)->middleware(['auth', 'role
 
 Route::middleware("auth")->group(function () {
 
-    Route::get('plans', [PlanController::class, 'index']);
-    Route::get('plans/{plan}', [PlanController::class, 'show'])->name("plans.show");
-    Route::post('subscription', [PlanController::class, 'subscription'])->name("subscription.create");
+    Route::get('product/{product}', [UserController::class, 'show'])->name("product.show");
+    Route::post('payment/process-payment/{string}/{price}', [UserController::class, 'processPayment'])->name('processPayment');
+    Route::get('order/{order}/cancle', [UserController::class, 'cancleOrder'])->name('cancle.order');
+
+    Route::get('user/{user}/status', [UserController::class,'changeStatus'])->name('user.status');
 });

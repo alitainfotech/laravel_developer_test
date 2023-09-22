@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
+            $table->string('order_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->integer('quantity');
             $table->string('price');
-            $table->string('image');
-            $table->text('description');
-            $table->enum('type', ['0', '1'])->comment('0 is B2B and 1 id B2C');
-            $table->string('stripe_id');
+            $table->enum('status',['0','1'])->comment('0 is Successfull and 1 is Cancled');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('orders');
     }
 };

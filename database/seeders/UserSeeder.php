@@ -19,7 +19,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        $adminUser->assignRole('Admin');
+        $adminUser->assignRole('admin');
         $adminUser->givePermissionTo('manage-products');
+
+        User::factory()->create([
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

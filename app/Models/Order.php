@@ -5,30 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Plan extends Model
+class Order extends Model
 {
     use HasFactory;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'slug',
-        'stripe_plan',
+        'order_id',
+        'user_id',
+        'product_id',
+        'quantity',
         'price',
-        'description',
+        'status',
     ];
-
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 }

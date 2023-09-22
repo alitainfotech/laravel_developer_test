@@ -21,5 +21,6 @@ class Product extends Model
         'image',
         'description',
         'type',
+        'stripe_id'
     ];
 }
